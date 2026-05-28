@@ -9,22 +9,25 @@ export default function SearchBar({ onSearch }: Props) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
     if (!value.trim()) return;
-
     onSearch(value);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex gap-3">
       <input
-        className="border p-2 rounded w-full"
-        placeholder="Search artworks..."
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        placeholder="Search artworks, artists, styles..."
+        className="w-full px-4 py-3 rounded-xl border border-neutral-200
+                   focus:outline-none focus:ring-2 focus:ring-neutral-300
+                   bg-white text-sm"
       />
 
-      <button className="bg-black text-white px-4 rounded">
+      <button
+        className="px-5 py-3 rounded-xl bg-neutral-900 text-white text-sm
+                   hover:bg-neutral-800 transition"
+      >
         Search
       </button>
     </form>
