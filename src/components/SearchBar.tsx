@@ -33,10 +33,11 @@ export default function SearchBar({ onSearch }: Props) {
         "
       />
 
-<button
-  type="submit"
-  className="
-    px-6 py-4 rounded-2xl
+     <button
+      type="submit"
+      className="
+    px-5 py-3 sm:px-6 sm:py-4
+    rounded-2xl
     bg-[#c9a84c]
     text-black text-sm font-semibold tracking-widest uppercase
     whitespace-nowrap
@@ -47,7 +48,7 @@ export default function SearchBar({ onSearch }: Props) {
     active:scale-[0.97]
     transition-all duration-300
   "
->
+   >
   Search
 </button>
     </form>
