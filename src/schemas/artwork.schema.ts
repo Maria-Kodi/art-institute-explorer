@@ -2,9 +2,17 @@ import { z } from "zod";
 
 export const ArtworkSchema = z.object({
   id: z.number(),
+
   title: z.string().default("Untitled"),
-  artist_title: z.string().nullable().default("Unknown Artist"),
+
+  artist_title: z
+    .string()
+    .nullable()
+    .default("Unknown Artist"),
+
   image_id: z.string().nullable(),
+
+  note: z.string().optional(),
 });
 
 export type Artwork = z.infer<typeof ArtworkSchema>;
