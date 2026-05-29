@@ -23,9 +23,7 @@ function App() {
     const randomId =
       HERO_ARTWORK_IDS[Math.floor(Math.random() * HERO_ARTWORK_IDS.length)];
 
-    fetch(
-      `https://api.artic.edu/api/v1/artworks/${randomId}?fields=image_id`
-    )
+    fetch(`https://api.artic.edu/api/v1/artworks/${randomId}?fields=image_id`)
       .then((r) => r.json())
       .then((data) => {
         const imageId = data?.data?.image_id;
@@ -70,7 +68,11 @@ function App() {
         rel="stylesheet"
       />
 
-      <div ref={heroRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+      {/* HERO */}
+      <div
+        ref={heroRef}
+        style={{ position: "relative", height: "100vh", overflow: "hidden" }}
+      >
         <div
           style={{
             position: "absolute",
@@ -107,22 +109,30 @@ function App() {
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
-            padding: "0 1.5rem",
-            gap: "1.5rem",
+            padding: "0 clamp(1rem, 5vw, 3rem)",
+            gap: "clamp(1rem, 2.5vw, 1.5rem)",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-            <div style={{ width: 60, height: 1, background: "#c9a84c", opacity: 0.6 }} />
-            <span style={{ fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#c9a84c", opacity: 0.8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <div style={{ width: 40, height: 1, background: "#c9a84c", opacity: 0.6 }} />
+            <span
+              style={{
+                fontSize: "clamp(9px, 2vw, 11px)",
+                letterSpacing: "0.3em",
+                textTransform: "uppercase",
+                color: "#c9a84c",
+                opacity: 0.8,
+              }}
+            >
               Chicago · Est. 1879
             </span>
-            <div style={{ width: 60, height: 1, background: "#c9a84c", opacity: 0.6 }} />
+            <div style={{ width: 40, height: 1, background: "#c9a84c", opacity: 0.6 }} />
           </div>
 
           <h1
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(3rem, 8vw, 6rem)",
+              fontSize: "clamp(2.2rem, 8vw, 6rem)",
               fontWeight: 400,
               lineHeight: 1.1,
               color: "#f5ede0",
@@ -136,7 +146,16 @@ function App() {
             </span>
           </h1>
 
-          <p style={{ maxWidth: 480, fontSize: 15, lineHeight: 1.7, color: "#e8e0d0", opacity: 0.6 }}>
+          <p
+            style={{
+              maxWidth: 480,
+              fontSize: "clamp(13px, 2.5vw, 15px)",
+              lineHeight: 1.7,
+              color: "#e8e0d0",
+              opacity: 0.6,
+              margin: 0,
+            }}
+          >
             Discover timeless masterpieces from one of the world's greatest art collections.
           </p>
 
@@ -146,11 +165,11 @@ function App() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                padding: "6px 18px",
+                padding: "6px 16px",
                 borderRadius: 999,
                 border: "1px solid rgba(201,168,76,0.4)",
                 color: "#c9a84c",
-                fontSize: 12,
+                fontSize: "clamp(10px, 2vw, 12px)",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
                 background: "rgba(201,168,76,0.07)",
@@ -166,12 +185,18 @@ function App() {
         </div>
       </div>
 
-      {/* CONTENT */}
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "4rem 1.5rem 2rem" }}>
-        {/* LOADING */}
-        {loading && <p>Curating artworks...</p>}
+      {/* MAIN CONTENT */}
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 1.5rem) 2rem",
+        }}
+      >
+        {loading && (
+          <p style={{ textAlign: "center", opacity: 0.5 }}>Curating artworks...</p>
+        )}
 
-        {/* EMPTY STATE */}
         {!loading && artworks.length === 0 && (
           <p style={{ textAlign: "center", opacity: 0.25 }}>
             Search for an artist, artwork, or style
@@ -181,8 +206,8 @@ function App() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "2rem",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(280px, 100%), 1fr))",
+            gap: "clamp(1rem, 3vw, 2rem)",
           }}
         >
           {artworks.map((art) => (
